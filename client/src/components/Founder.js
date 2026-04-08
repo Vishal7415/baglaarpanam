@@ -1,6 +1,29 @@
-'use client';
+import { useState, useEffect } from 'react';
 
 export default function Founder() {
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const images = [
+    '/images/aacharya-yogesh.png',
+    '/images/founder/IMG-20241111-WA0084.jpg',
+    '/images/founder/IMG-20241111-WA0092.jpg',
+    '/images/founder/IMG-20241111-WA0093.jpg',
+    '/images/founder/IMG-20241111-WA0097.jpg',
+    '/images/founder/IMG-20241111-WA0101.jpg',
+    '/images/founder/IMG-20241111-WA0102.jpg',
+    '/images/founder/IMG-20241111-WA0104.jpg',
+    '/images/founder/IMG-20241111-WA0105.jpg',
+    '/images/founder/IMG-20241111-WA0107.jpg',
+    '/images/founder/IMG-20241111-WA0108.jpg'
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
   const styles = {
     section: {
       padding: '100px 0',
@@ -20,13 +43,42 @@ export default function Founder() {
       overflow: 'hidden',
       boxShadow: '0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--primary-glow)',
       border: '1px solid var(--border)',
+      aspectRatio: '1/1',
+      background: '#0a0a0a',
     },
     image: {
       width: '100%',
-      height: 'auto',
-      display: 'block',
+      height: '100%',
+      objectFit: 'cover',
       filter: 'sepia(20%) contrast(110%)',
+      transition: 'opacity 1s ease-in-out',
+      position: 'absolute',
+      top: 0,
+      left: 0,
     },
+    overlay: {
+      position: 'absolute',
+      bottom: '0',
+      left: '0',
+      right: '0',
+      padding: '40px',
+      background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+      textAlign: 'center',
+      zIndex: 2,
+    },
+    dots: {
+      display: 'flex',
+      gap: '8px',
+      justifyContent: 'center',
+      marginTop: '15px',
+    },
+    dot: (isActive) => ({
+      width: '8px',
+      height: '8px',
+      borderRadius: '50%',
+      background: isActive ? 'var(--primary)' : 'rgba(255,255,255,0.3)',
+      transition: 'all 0.3s ease',
+    }),
     content: {
       display: 'flex',
       flexDirection: 'column',
@@ -84,22 +136,26 @@ export default function Founder() {
       <div className="container">
         <div style={styles.container}>
           <div style={styles.imageWrapper} className="fade-in">
-            <img 
-              src="/images/aacharya-yogesh.png" 
-              alt="Aacharya Yogesh" 
-              style={styles.image}
-            />
-            <div style={{
-              position: 'absolute',
-              bottom: '0',
-              left: '0',
-              right: '0',
-              padding: '40px',
-              background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
-              textAlign: 'center'
-            }}>
+            {images.map((img, idx) => (
+              <img 
+                key={idx}
+                src={img} 
+                alt={`Aacharya Yogesh ${idx + 1}`} 
+                style={{
+                  ...styles.image,
+                  opacity: currentImage === idx ? 1 : 0,
+                }}
+              />
+            ))}
+            
+            <div style={styles.overlay}>
               <h3 style={{color: '#fff', fontSize: '1.5rem', margin: 0}}>आचार्य योगेश</h3>
               <p style={{color: 'var(--primary)', margin: '5px 0 0'}}>संस्थापक - बगलार्पणम् ट्रस्ट</p>
+              <div style={styles.dots}>
+                {images.map((_, idx) => (
+                  <div key={idx} style={styles.dot(currentImage === idx)} />
+                ))}
+              </div>
             </div>
           </div>
 
