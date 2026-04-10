@@ -131,12 +131,13 @@ export default function Navbar() {
           font-family: 'Cinzel', serif;
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 1024px) {
           .nav-links { gap: 15px; }
           .logo { font-size: 1.5rem; }
+          .nav-link { font-size: 0.8rem; }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 991px) {
           .hidden-mobile { display: none !important; }
           .mobile-menu-btn { display: block; }
           .navbar { padding: 15px 0; }
