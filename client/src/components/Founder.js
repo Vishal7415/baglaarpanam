@@ -4,7 +4,6 @@ export default function Founder() {
   const [currentImage, setCurrentImage] = useState(0);
   
   const images = [
-    '/images/aacharya-yogesh.png',
     '/images/founder/IMG-20241111-WA0084.jpg',
     '/images/founder/IMG-20241111-WA0092.jpg',
     '/images/founder/IMG-20241111-WA0093.jpg',
@@ -30,12 +29,6 @@ export default function Founder() {
       background: 'var(--background)',
       position: 'relative',
       overflow: 'hidden',
-    },
-    container: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1.2fr',
-      gap: '80px',
-      alignItems: 'center',
     },
     imageWrapper: {
       position: 'relative',
@@ -134,7 +127,7 @@ export default function Founder() {
   return (
     <section style={styles.section} id="founder">
       <div className="container">
-        <div style={styles.container}>
+        <div className="grid-founder">
           <div style={styles.imageWrapper} className="fade-in">
             {images.map((img, idx) => (
               <img 
@@ -206,6 +199,19 @@ export default function Founder() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 991px) {
+            h2 { font-size: 2.8rem !important; }
+        }
+        @media (max-width: 768px) {
+            h2 { font-size: 2.2rem !important; text-align: center; }
+            .badge { text-align: center; }
+            .fade-in { text-align: center; }
+            [style*="gridTemplateColumns: '1fr 1fr'"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+      `}</style>
     </section>
   );
 }

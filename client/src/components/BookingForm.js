@@ -209,6 +209,17 @@ export default function BookingForm() {
           )}
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+            [style*="padding: '50px'"],
+            [style*="padding: 50px"] {
+                padding: 25px !important;
+            }
+            [style*="maxWidth: '600px'"] {
+                padding: 20px !important;
+            }
+        }
+      `}</style>
     </section>
   );
 }

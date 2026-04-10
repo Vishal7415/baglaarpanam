@@ -9,12 +9,6 @@ export default function About() {
       position: 'relative',
       overflow: 'hidden',
     },
-    container: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: '60px',
-      alignItems: 'center',
-    },
     imageContainer: {
       position: 'relative',
       borderRadius: '20px',
@@ -55,7 +49,7 @@ export default function About() {
 
   return (
     <section id="about" style={styles.section}>
-      <div className="container" style={styles.container}>
+      <div className="container grid-auto-300" style={{alignItems: 'center', gap: '60px'}}>
         <div style={styles.imageContainer}>
           <img src="/images/hero.png" alt="Baglamukhi Mandir Nalkheda" style={styles.image} />
         </div>

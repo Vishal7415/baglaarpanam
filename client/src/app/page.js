@@ -73,7 +73,7 @@ export default function Home() {
       <section id="gallery" style={{background: 'var(--background)'}}>
          <div className="container">
            <h2 style={{textAlign: 'center', marginBottom: '60px'}}>पुण्य दर्शन (Gallery)</h2>
-           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px'}}>
+           <div className="grid-auto-300" style={{gap: '20px'}}>
               {galleryImages.map((img, i) => (
                 <div key={i} className="glass-card" style={{height: '300px', overflow: 'hidden', cursor: 'pointer'}}>
                    <img 

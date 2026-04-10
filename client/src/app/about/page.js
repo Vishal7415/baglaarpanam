@@ -26,13 +26,6 @@ export default function AboutPage() {
     contentSection: {
       padding: '100px 0',
       background: 'var(--background)',
-    },
-    grid: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '60px',
-      alignItems: 'center',
-      marginTop: '60px',
     }
   };
 
@@ -54,7 +47,7 @@ export default function AboutPage() {
 
       <section style={styles.contentSection}>
         <div className="container">
-          <div style={styles.grid}>
+          <div className="grid-2-col" style={{alignItems: 'center', marginTop: '60px'}}>
             <div>
               <h2 style={{marginBottom: '30px', color: 'var(--primary)'}}>हमारा मिशन (Our Mission)</h2>
               <p style={{marginBottom: '20px', fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)'}}>

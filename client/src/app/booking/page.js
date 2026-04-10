@@ -21,13 +21,6 @@ export default function BookingPage() {
       color: 'var(--primary)',
       letterSpacing: '2px',
       textTransform: 'uppercase',
-    },
-    grid: {
-       display: 'grid',
-       gridTemplateColumns: '1fr 1fr',
-       gap: '60px',
-       alignItems: 'start',
-       padding: '100px 0',
     }
   };
 
@@ -44,7 +37,7 @@ export default function BookingPage() {
       </section>
 
       <section style={{background: 'var(--background)'}}>
-         <div className="container" style={styles.grid}>
+         <div className="container grid-2-col" style={{alignItems: 'start', padding: '100px 0'}}>
             <div>
                <h2 style={{marginBottom: '30px', color: 'var(--primary)'}}>ऑनलाइन बुकिंग प्रक्रिया</h2>
                <p style={{marginBottom: '30px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.8'}}>

@@ -1,12 +1,13 @@
 {
-  "name": "client",
+  "name": "baglaarpanam",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "server": "node server/server.js"
   },
   "dependencies": {
     "next": "16.2.2",
@@ -18,5 +19,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

@@ -1,9 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import LanguageTranslator from './LanguageTranslator';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,69 +15,133 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const styles = {
-    nav: {
-      position: 'fixed',
-      top: 0,
-      width: '100%',
-      zIndex: 1000,
-      padding: isScrolled ? '15px 5%' : '25px 5%',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      background: isScrolled ? 'rgba(13, 13, 13, 0.95)' : 'transparent',
-      backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-      borderBottom: isScrolled ? '1px solid var(--border)' : 'none',
-      transition: 'all 0.4s ease',
-    },
-    logo: {
-      fontSize: '1.8rem',
-      fontWeight: '700',
-      fontFamily: "'Rozha One', serif",
-      color: 'var(--primary)',
-      cursor: 'pointer',
-    },
-    logoSub: {
-      fontSize: '0.8rem',
-      color: '#fff',
-      display: 'block',
-      letterSpacing: '3px',
-      marginTop: '-5px',
-    },
-    links: {
-      display: 'flex',
-      gap: '30px',
-      alignItems: 'center',
-    },
-    link: {
-      fontSize: '0.9rem',
-      fontWeight: '500',
-      textTransform: 'uppercase',
-      letterSpacing: '1px',
-      transition: 'color 0.3s ease',
-    },
-    bookingBtn: {
-      marginLeft: '20px',
-    }
-  };
-
   return (
-    <nav style={styles.nav}>
-      <Link href="/">
-        <div style={styles.logo}>
-          बगलार्पणम्
-          <span style={styles.logoSub}>नलखेड़ा सिद्ध पीठ</span>
+    <>
+      <nav className={`navbar ${isScrolled || isMenuOpen ? 'scrolled' : ''}`}>
+        <div className="nav-container container">
+          <Link href="/">
+            <div className="logo">
+              बगलार्पणम्
+              <span className="logo-sub">नलखेड़ा सिद्ध पीठ</span>
+            </div>
+          </Link>
+          
+          {/* Desktop Links */}
+          <div className="nav-links hidden-mobile">
+            <Link href="/about" className="nav-link">About</Link>
+            <Link href="/services" className="nav-link">Services</Link>
+            <Link href="/contact" className="nav-link">Contact</Link>
+            <Link href="/booking" className="nav-link">Booking</Link>
+            <LanguageTranslator />
+            <a href="https://wa.me/91XXXXXXXXXX" className="btn-premium btn-gold">WhatsApp Now</a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? '✕' : '☰'}
+          </div>
         </div>
-      </Link>
-      
-      <div style={styles.links} className="hidden-mobile">
-        <Link href="/about" style={styles.link}>About</Link>
-        <Link href="/services" style={styles.link}>Services</Link>
-        <Link href="/contact" style={styles.link}>Contact</Link>
-        <Link href="/booking" style={styles.link}>Booking</Link>
-        <Link href="/admin" style={styles.link}>Dashboard</Link>
-        <a href="https://wa.me/91XXXXXXXXXX" className="btn-premium btn-gold" style={styles.bookingBtn}>WhatsApp Now</a>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-overlay ${isMenuOpen ? 'active' : ''}`}>
+        <Link href="/about" className="mobile-link" onClick={() => setIsMenuOpen(false)}>About</Link>
+        <Link href="/services" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Services</Link>
+        <Link href="/contact" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+        <Link href="/booking" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Booking</Link>
+        <div style={{margin: '20px 0'}}><LanguageTranslator /></div>
+        <a href="https://wa.me/91XXXXXXXXXX" className="btn-premium btn-gold" onClick={() => setIsMenuOpen(false)}>WhatsApp Now</a>
       </div>
-    </nav>
+
+      <style jsx>{`
+        .navbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+          padding: 25px 0;
+          transition: all 0.4s ease;
+          background: transparent;
+        }
+        .navbar.scrolled {
+          background: rgba(13, 13, 13, 0.95);
+          backdrop-filter: blur(10px);
+          padding: 15px 0;
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .logo {
+          font-size: 1.8rem;
+          font-weight: 700;
+          font-family: 'Rozha One', serif;
+          color: var(--primary);
+        }
+        .logo-sub {
+          font-size: 0.75rem;
+          color: #fff;
+          display: block;
+          letter-spacing: 2px;
+          margin-top: -5px;
+          font-family: 'Inter', sans-serif;
+        }
+        .nav-links {
+          display: flex;
+          gap: 30px;
+          align-items: center;
+        }
+        .nav-link {
+          font-size: 0.85rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #fff;
+        }
+        .mobile-menu-btn {
+          display: none;
+          font-size: 1.8rem;
+          color: var(--primary);
+          cursor: pointer;
+        }
+        .mobile-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: #0d0d0d;
+          z-index: 999;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 25px;
+          transform: translateY(-100%);
+          transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .mobile-overlay.active {
+          transform: translateY(0);
+        }
+        .mobile-link {
+          font-size: 1.5rem;
+          color: #fff;
+          font-family: 'Cinzel', serif;
+        }
+
+        @media (max-width: 991px) {
+          .nav-links { gap: 15px; }
+          .logo { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 768px) {
+          .hidden-mobile { display: none !important; }
+          .mobile-menu-btn { display: block; }
+          .navbar { padding: 15px 0; }
+        }
+      `}</style>
+    </>
   );
 }

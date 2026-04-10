@@ -94,7 +94,7 @@ export default function ServiceDetail() {
               <div className="glass-card" style={{padding: '30px', marginTop: '40px', textAlign: 'center'}}>
                  <h4 style={{marginBottom: '10px'}}>Ritual Charges</h4>
                  <div style={{fontSize: '2rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '20px'}}>{service.price}</div>
-                 <p style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)'}}>Pricing includes Samagri, Brahman Dakshina and Temple Donation.</p>
+                 <p style={{fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)'}}>Pricing includes Samagri, Braham Dakshina and Temple Donation.</p>
               </div>
             </div>
             

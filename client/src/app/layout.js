@@ -22,6 +22,36 @@ export default function RootLayout({ children }) {
         <Footer />
         <WhatsappButton />
         <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({
+                pageLanguage: 'hi',
+                includedLanguages: 'en,hi,mr,gu,ta,te,kn',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+              }, 'google_translate_element');
+            }
+
+            // Listen for language changes and handle 'Hindi' as 'Original'
+            document.addEventListener('change', function(e) {
+              if (e.target && e.target.classList.contains('goog-te-combo')) {
+                const selectedLang = e.target.value;
+                if (selectedLang === 'hi' || selectedLang === '') {
+                   const iframe = document.querySelector('.goog-te-banner-frame');
+                   if (iframe) {
+                     const restoreBtn = iframe.contentDocument.querySelector('.goog-te-button button[id*="restore"]');
+                     if (restoreBtn) restoreBtn.click();
+                   }
+                }
+              }
+            });
+          `}
+        </Script>
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
