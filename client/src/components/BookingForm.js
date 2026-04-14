@@ -51,7 +51,8 @@ export default function BookingForm() {
     // Simulating API call to save booking
     setTimeout(() => {
       setLoading(false);
-      handlePayment();
+      // Removed handlePayment() - bypassing Razorpay for free inquiry model
+      setSuccess(true);
     }, 1000);
   };
 
@@ -188,16 +189,16 @@ export default function BookingForm() {
                 style={{width: '100%', marginTop: '30px'}}
                 disabled={loading}
               >
-                {loading ? 'Sourcing Payment Gateway...' : 'Book Now & Pay ₹5100'}
+                {loading ? 'Submitting Your Request...' : 'Book Now'}
               </button>
               <p style={{textAlign: 'center', fontSize: '0.7rem', marginTop: '15px', color: 'rgba(255,255,255,0.4)'}}>
-                Secure Payment via Razorpay. 100% Confirmation.
+                Your data is secure. 100% Confirmation.
               </p>
             </form>
           ) : (
             <div style={{textAlign: 'center', padding: '40px 0'}}>
-              <h3 style={{color: 'var(--primary)', marginBottom: '20px'}}>Booking & Payment Successful!</h3>
-              <p>Your Sankalp has been recorded. Our Pujari will call you to confirm the time.</p>
+              <h3 style={{color: 'var(--primary)', marginBottom: '20px'}}>Booking Request Successful!</h3>
+              <p>Your details have been recorded. Our team will contact you shortly.</p>
               <button 
                 className="btn-premium btn-outline" 
                 style={{marginTop: '30px'}}

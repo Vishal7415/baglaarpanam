@@ -118,7 +118,7 @@ export default function ServicesPage() {
                    <span style={styles.cardIcon}>{service.icon}</span>
                    <h3 style={styles.cardTitle}>{service.title}</h3>
                    <p style={styles.cardText}>{service.desc}</p>
-                   <div style={{color: 'var(--primary)', fontWeight: 'bold', fontSize: '1.2rem', marginBottom: '20px'}}>{service.price}</div>
+                   {/* <div style={{color: 'var(--primary)', fontWeight: 'bold', fontSize: '1.2rem', marginBottom: '20px'}}>{service.price}</div> */}
                    <a href="#booking" className="btn-premium btn-outline" style={{width: '100%'}}>Book Now</a>
                 </div>
               ))}

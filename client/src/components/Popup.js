@@ -113,8 +113,8 @@ export default function Popup() {
         <button style={styles.closeBtn} onClick={handleClose}>×</button>
         
         <span style={styles.badge}>Special Service</span>
-        <h2 style={styles.title}>ब्रह्म पूजा हेतु संपर्क करें</h2>
-        <p style={styles.subTitle}>माँ बगलामुखी के चरणों में पूर्ण विधि-विधान से ब्रह्म अनुष्ठान एवं हवन।</p>
+        <h2 style={styles.title}>ब्रह्मास्त्र पूजन के लिए संपर्क करें</h2>
+        <p style={styles.subTitle}>माँ बगलामुखी के चरणों में पूर्ण विधि-विधान से ब्रह्मास्त्र अनुष्ठान एवं हवन।</p>
         
         <form onSubmit={handleSubmit}>
           <input 

@@ -22,9 +22,12 @@ export default function RootLayout({ children }) {
         <Footer />
         <WhatsappButton />
         <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-        <Script id="google-translate-init" strategy="afterInteractive">
+        
+        {/* Global Google Translate Setup - Simplified for Cookie-based selection */}
+        <div id="google_translate_element" style={{ display: 'none' }}></div>
+        <Script id="google-translate-config" strategy="afterInteractive">
           {`
-            function googleTranslateElementInit() {
+            window.googleTranslateElementInit = function() {
               new google.translate.TranslateElement({
                 pageLanguage: 'hi',
                 includedLanguages: 'en,hi,mr,gu,ta,te,kn',
@@ -32,24 +35,10 @@ export default function RootLayout({ children }) {
                 autoDisplay: false
               }, 'google_translate_element');
             }
-
-            // Listen for language changes and handle 'Hindi' as 'Original'
-            document.addEventListener('change', function(e) {
-              if (e.target && e.target.classList.contains('goog-te-combo')) {
-                const selectedLang = e.target.value;
-                if (selectedLang === 'hi' || selectedLang === '') {
-                   const iframe = document.querySelector('.goog-te-banner-frame');
-                   if (iframe) {
-                     const restoreBtn = iframe.contentDocument.querySelector('.goog-te-button button[id*="restore"]');
-                     if (restoreBtn) restoreBtn.click();
-                   }
-                }
-              }
-            });
           `}
         </Script>
         <Script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
           strategy="afterInteractive"
         />
       </body>

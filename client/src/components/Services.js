@@ -117,7 +117,7 @@ export default function Services() {
                   <p style={{color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem'}}>{service.description}</p>
                 </div>
                 <div style={{marginTop: '20px'}}>
-                  <div style={{fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '15px'}}>{service.price}</div>
+                  {/* <div style={{fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '15px'}}>{service.price}</div> */}
                   <Link href={`/services/${service._id}`} className="btn-premium btn-gold" style={{width: '100%', display: 'block', fontSize: '0.8rem'}}>View Details & Book →</Link>
                 </div>
               </div>
