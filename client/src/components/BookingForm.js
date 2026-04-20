@@ -80,17 +80,18 @@ export default function BookingForm() {
               </div>
               
               <div style={styles.formGroup}>
-                <label style={styles.label}>Select Problem</label>
+                <label style={styles.label}>अनुष्ठानों की सूची (Select Ritual)</label>
                 <select 
                   style={styles.input} required value={formData.problem}
                   onChange={(e) => setFormData({...formData, problem: e.target.value})}
                 >
-                  <option disabled value="Select Problem">Select Problem</option>
-                  <option>Court Case / कानूनी बाधा</option>
-                  <option>Business / व्यापारिक घाटा</option>
-                  <option>Protection / सुरक्षा अनुष्ठान</option>
-                  <option>Debt Relief / कर्ज मुक्ति</option>
-                  <option>Black Magic Removal / नजर दोष</option>
+                  <option disabled value="Select Problem">अनुष्ठान का चयन करें</option>
+                  <option>बगलामुखी शत्रुभय नाशक अनुष्ठान</option>
+                  <option>सिद्ध बगलामुखी हवन (कोर्ट केस मुक्ति)</option>
+                  <option>व्यापार वृद्धि एवं लक्ष्मी प्राप्ति</option>
+                  <option>नजर दोष एवं तंत्र बाधा निवारण</option>
+                  <option>पीताम्बरा विशेष अनुष्ठान</option>
+                  <option>ऑनलाइन संकल्प एवं लाइव दर्शन</option>
                 </select>
               </div>
               
