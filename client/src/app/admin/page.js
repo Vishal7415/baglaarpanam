@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 
-const ADMIN_API = 'http://localhost:5001/api/admin';
+const ADMIN_API = '/api/admin'; // Use relative internal API
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   // Service Form
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [editingService, setEditingService] = useState(null);
-  const [serviceForm, setServiceForm] = useState({ title: '', description: '', price: '', order: 0 });
+  const [serviceForm, setServiceForm] = useState({ title: '', description: '', price: 0, order: 0 });
 
   useEffect(() => {
     const savedToken = localStorage.getItem('adminToken');
@@ -34,12 +34,10 @@ export default function AdminDashboard() {
     try {
       const headers = { 'Authorization': authToken };
       
-      const [sRes, bRes, serRes, inqRes] = await Promise.all([
-        fetch(`${ADMIN_API}/stats`, { headers }),
-        fetch(`${ADMIN_API}/bookings`, { headers }),
-        fetch(`${ADMIN_API}/services`, { headers }),
-        fetch(`${ADMIN_API}/inquiries`, { headers })
-      ]);
+      const sRes = await fetch(`${ADMIN_API}/stats`, { headers });
+      const bRes = await fetch(`${ADMIN_API}/bookings`, { headers });
+      const serRes = await fetch(`${ADMIN_API}/services`, { headers });
+      const inqRes = await fetch(`/api/inquiries`, { headers });
 
       if (sRes.ok) setStats(await sRes.json());
       if (bRes.ok) setBookings(await bRes.json());
@@ -64,7 +62,7 @@ export default function AdminDashboard() {
         setIsAuthenticated(true);
         fetchAll(data.token);
       } else alert(data.error);
-    } catch (err) { alert('Admin server not reachable.'); }
+    } catch (err) { alert('Login API Error'); }
   };
 
   const logout = () => {
@@ -74,38 +72,40 @@ export default function AdminDashboard() {
 
   // Actions
   const patchBooking = async (id, data) => {
-    await fetch(`${ADMIN_API}/bookings/${id}`, {
+    await fetch(`${ADMIN_API}/bookings`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json', 'Authorization': token },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ id, ...data })
     });
     fetchAll(token);
   };
 
   const deleteItem = async (type, id) => {
     if (!confirm('Are you sure?')) return;
-    await fetch(`${ADMIN_API}/${type}/${id}`, { method: 'DELETE', headers: { 'Authorization': token } });
+    const url = type === 'inquiries' ? `/api/inquiries` : `${ADMIN_API}/${type}`;
+    await fetch(`${url}?id=${id}`, { method: 'DELETE', headers: { 'Authorization': token } });
     fetchAll(token);
   };
 
   const submitService = async (e) => {
     e.preventDefault();
     const method = editingService ? 'PUT' : 'POST';
-    const url = editingService ? `${ADMIN_API}/services/${editingService._id}` : `${ADMIN_API}/services`;
-    await fetch(url, {
+    const body = editingService ? { id: editingService._id, ...serviceForm } : serviceForm;
+    
+    await fetch(`${ADMIN_API}/services`, {
       method,
       headers: { 'Content-Type': 'application/json', 'Authorization': token },
-      body: JSON.stringify(serviceForm)
+      body: JSON.stringify(body)
     });
     setShowServiceForm(false);
     fetchAll(token);
   };
 
   const markInquiryRead = async (id) => {
-    await fetch(`${ADMIN_API}/inquiries/${id}`, {
+    await fetch(`/api/inquiries`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json', 'Authorization': token },
-      body: JSON.stringify({ status: 'read' })
+      body: JSON.stringify({ id, status: 'read' })
     });
     fetchAll(token);
   };
@@ -145,7 +145,7 @@ export default function AdminDashboard() {
   return (
     <div style={styles.container}>
       <div style={styles.topBar}>
-        <h1>Dashboard <span style={{fontSize: '1rem', color: '#555', fontWeight: 'normal'}}>v2.0</span></h1>
+        <h1>Dashboard <span style={{fontSize: '1rem', color: '#555', fontWeight: 'normal'}}>v2.1</span></h1>
         <div style={{display: 'flex', alignItems: 'center', gap: '20px'}}>
            {loading && <span style={{color: '#b8860b', fontSize: '0.8rem'}}>Syncing...</span>}
            <button onClick={logout} style={{background: 'none', border: '1px solid #e74c3c', color: '#e74c3c', padding: '5px 15px', borderRadius: '6px', cursor: 'pointer'}}>Exit</button>
@@ -251,7 +251,7 @@ export default function AdminDashboard() {
              </div>
            )}
 
-           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(200px, 1fr))', gap:'20px'}}>
+           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(250px, 1fr))', gap:'20px'}}>
               {services.map(s => (
                 <div key={s._id} style={{padding:'20px', background:'#111', borderRadius:'10px'}}>
                    <h4 style={{color:'#b8860b'}}>{s.title}</h4>

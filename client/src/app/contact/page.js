@@ -9,7 +9,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus('Sending...');
     try {
-      const res = await fetch('http://localhost:5001/api/inquiries', {
+      const res = await fetch('/api/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
