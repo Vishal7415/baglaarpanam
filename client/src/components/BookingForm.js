@@ -85,13 +85,15 @@ export default function BookingForm() {
                   style={{...styles.inputByBrowser, ...styles.input}} required value={formData.problem}
                   onChange={(e) => setFormData({...formData, problem: e.target.value})}
                 >
-                  <option disabled value="Select Problem" style={{color: '#000'}}>अनुष्ठान का चयन करें</option>
-                  <option style={{color: '#000'}}>बगलामुखी शत्रुभय नाशक अनुष्ठान</option>
-                  <option style={{color: '#000'}}>सिद्ध बगलामुखी हवन (कोर्ट केस मुक्ति)</option>
-                  <option style={{color: '#000'}}>व्यापार वृद्धि एवं लक्ष्मी प्राप्ति</option>
-                  <option style={{color: '#000'}}>नजर दोष एवं तंत्र बाधा निवारण</option>
-                  <option style={{color: '#000'}}>पीताम्बरा विशेष अनुष्ठान</option>
-                  <option style={{color: '#000'}}>ऑनलाइन संकल्प एवं लाइव दर्शन</option>
+                  <option disabled value="Select Problem" style={{color: '#888'}}>-- अनुष्ठान का चयन करें --</option>
+                  <optgroup label="उपलब्ध अनुष्ठान" style={{color: '#b8860b', fontWeight: 'bold', background: '#000'}}>
+                    <option style={{color: '#000', background: '#fff'}}>बगलामुखी शत्रुभय नाशक अनुष्ठान</option>
+                    <option style={{color: '#000', background: '#fff'}}>सिद्ध बगलामुखी हवन (कोर्ट केस मुक्ति)</option>
+                    <option style={{color: '#000', background: '#fff'}}>व्यापार वृद्धि एवं लक्ष्मी प्राप्ति</option>
+                    <option style={{color: '#000', background: '#fff'}}>नजर दोष एवं तंत्र बाधा निवारण</option>
+                    <option style={{color: '#000', background: '#fff'}}>पीताम्बरा विशेष अनुष्ठान</option>
+                    <option style={{color: '#000', background: '#fff'}}>ऑनलाइन संकल्प एवं लाइव दर्शन</option>
+                  </optgroup>
                 </select>
               </div>
               
