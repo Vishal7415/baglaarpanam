@@ -32,7 +32,7 @@ export default function Hero() {
         
         <div className="hero-btns">
           <a href="/booking" className="btn-premium btn-gold hero-btn">Book Puja Now</a>
-          <a href="https://wa.me/91XXXXXXXXXX" className="btn-premium btn-outline hero-btn">Direct Consultation →</a>
+          <a href="https://wa.me/919424072531" className="btn-premium btn-outline hero-btn">Direct Consultation →</a>
         </div>
       </div>
 

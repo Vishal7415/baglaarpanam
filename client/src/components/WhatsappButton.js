@@ -40,7 +40,7 @@ export default function WhatsappButton() {
         }
       `}</style>
       <a 
-        href="https://wa.me/91XXXXXXXXXX?text=नमस्ते, मुझे बगलामुखी पूजा के बारे में जानकारी चाहिए।" 
+        href="https://wa.me/919424072531?text=नमस्ते, मुझे बगलामुखी पूजा के बारे में जानकारी चाहिए।" 
         style={styles.whatsapp}
         target="_blank"
         rel="noopener noreferrer"

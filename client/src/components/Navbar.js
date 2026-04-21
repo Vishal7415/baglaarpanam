@@ -33,7 +33,7 @@ export default function Navbar() {
             <Link href="/contact" className="nav-link">Contact</Link>
             <Link href="/booking" className="nav-link">Booking</Link>
             <LanguageTranslator />
-            <a href="https://wa.me/91XXXXXXXXXX" className="btn-premium btn-gold">WhatsApp Now</a>
+            <a href="https://wa.me/919424072531" className="btn-premium btn-gold">WhatsApp Now</a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -50,7 +50,7 @@ export default function Navbar() {
         <Link href="/contact" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Contact</Link>
         <Link href="/booking" className="mobile-link" onClick={() => setIsMenuOpen(false)}>Booking</Link>
         <div style={{margin: '20px 0'}}><LanguageTranslator /></div>
-        <a href="https://wa.me/91XXXXXXXXXX" className="btn-premium btn-gold" onClick={() => setIsMenuOpen(false)}>WhatsApp Now</a>
+        <a href="https://wa.me/919424072531" className="btn-premium btn-gold" onClick={() => setIsMenuOpen(false)}>WhatsApp Now</a>
       </div>
 
       <style jsx>{`

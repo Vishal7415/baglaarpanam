@@ -51,7 +51,7 @@ export default function Contact() {
              <div className="glass-card" style={styles.contactCard}>
                 <div style={styles.icon}>📞</div>
                 <h3>फ़ोन (Phone)</h3>
-                <p>+91-XXXXXXXXXX</p>
+                <p>+91-9424072531, +91-8770098253</p>
              </div>
              <div className="glass-card" style={styles.contactCard}>
                 <div style={styles.icon}>✉️</div>

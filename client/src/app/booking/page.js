@@ -71,7 +71,7 @@ export default function BookingPage() {
                <div className="glass-card" style={{marginTop: '60px', padding: '40px', border: '1px solid var(--primary-glow)'}}>
                   <h3 style={{marginBottom: '20px'}}>Contact Support</h3>
                   <p>किसी भी सहायता के लिए हमें कॉल करें:</p>
-                  <p style={{fontSize: '1.5rem', color: 'var(--primary)', marginTop: '10px'}}>+91-XXXXXXXXXX</p>
+                  <p style={{fontSize: '1.5rem', color: 'var(--primary)', marginTop: '10px'}}>+91-9424072531, +91-8770098253</p>
                </div>
             </div>
             
