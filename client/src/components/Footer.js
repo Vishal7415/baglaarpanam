@@ -90,7 +90,7 @@ export default function Footer() {
             </div>
             <div style={styles.contactInfo}>
               <span style={{color: 'var(--primary)'}}>📞</span>
-              <span style={styles.li}>+91-9424072531, +91-8770098253</span>
+              <span style={styles.li}>+91-9424072531<br />+91-8770098253</span>
             </div>
             <div style={styles.contactInfo}>
               <span style={{color: 'var(--primary)'}}>✉️</span>
